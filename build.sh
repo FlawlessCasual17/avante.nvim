@@ -103,6 +103,9 @@ elif [[ "$latest_tag" != "$built_tag" && -n "$latest_tag" ]]; then
     curl -L "$ARTIFACT_URL" | tar -zxv -C "$TARGET_DIR"
     save_tag
   fi
+  for f in ./build/avante_*.$LIB_EXT; do
+    cp "$f" ../../avante
+  done
 else
   echo "No latest tag found. Building from source."
   cargo build --release --features=$LUA_VERSION
